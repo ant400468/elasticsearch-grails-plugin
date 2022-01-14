@@ -23,6 +23,7 @@ import grails.plugins.elasticsearch.conversion.unmarshall.DomainClassUnmarshalle
 import grails.plugins.elasticsearch.index.IndexRequestQueue
 import grails.plugins.elasticsearch.mapping.DomainReflectionService
 import grails.plugins.elasticsearch.mapping.MappingMigrationManager
+import grails.plugins.elasticsearch.mapping.MappingIndexManager
 import grails.plugins.elasticsearch.mapping.SearchableClassMappingConfigurator
 import grails.plugins.elasticsearch.unwrap.DomainClassUnWrapperChain
 import grails.plugins.elasticsearch.unwrap.HibernateProxyUnWrapper
@@ -40,7 +41,7 @@ class ElasticsearchGrailsPlugin extends Plugin {
 
     def pluginExcludes = [
             "grails-app/views/error.gsp",
-                          "**/test/**",
+            "**/test/**",
             "src/docs/**"
     ]
 
@@ -50,8 +51,8 @@ class ElasticsearchGrailsPlugin extends Plugin {
 
     def developers = [
             [name: 'Noam Y. Tenne', email: 'noam@10ne.org'],
-			[name: 'Marcos Carceles', email: 'marcos.carceles@gmail.com'],
-			[name: 'Puneet Behl', email: 'puneet.behl007@gmail.com'],
+            [name: 'Marcos Carceles', email: 'marcos.carceles@gmail.com'],
+            [name: 'Puneet Behl', email: 'puneet.behl007@gmail.com'],
             [name: 'James Kleeh', email: 'james.kleeh@gmail.com']
     ]
 
@@ -99,11 +100,16 @@ class ElasticsearchGrailsPlugin extends Plugin {
                 grailsApplication = grailsApplication
                 es = ref('elasticSearchAdminService')
             }
+            mappingIndexManager(MappingIndexManager) {
+                grailsApplication = grailsApplication
+            }
+
             searchableClassMappingConfigurator(SearchableClassMappingConfigurator) { bean ->
                 elasticSearchContext = ref('elasticSearchContextHolder')
                 grailsApplication = grailsApplication
                 es = ref('elasticSearchAdminService')
                 mmm = ref('mappingMigrationManager')
+                mim = ref('mappingIndexManager')
                 domainReflectionService = ref('domainReflectionService')
             }
             domainInstancesRebuilder(DomainClassUnmarshaller) {

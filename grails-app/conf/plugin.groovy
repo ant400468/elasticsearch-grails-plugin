@@ -71,6 +71,57 @@ elasticSearch {
     index.settings.numberOfReplicas = 0
 
     /**
+     * Custom Index mapping 'strategy' based on prefix and alias (to create custom index name for each domain class to be indexed into the cluster)
+     *
+     * Allowed strategy values are ['none', 'onlyAlias', 'prefixWithAlias', 'prefixWithPackage', 'prefixWithoutPackage']
+     *
+     * 1. 'none' set the index name of each root grails domain class to the full name (include package)
+     * 2. 'onlyAlias' set the index name to the given property 'indexAlias' and attribute 'name' (must be defined in searchable section)
+     * 3. 'prefixWithAlias' set the index name adding a mandatory prefix ('index.mapping.prefix') ahead the property 'indexAlias' (must be defined in searchable section)
+     * 4. 'prefixWithPackage' set the index name of each root domain class adding a prefix  ahead the domain class full name (include package)
+     * 5. 'prefixWithoutPackage' set the index name of each root domain class with the prefix ahead the only domain class name (exclude package)
+     *
+     *
+     *  ##### Some ##### help  ### if ######## strategy ####### with ## alias ############
+     *  If the strategy to set it is based on aliases ('onlyAlias' or 'prefixWithAlias')
+     *
+     *  The following steps are mandatory :
+     *
+     *  1. Set the strategy values in Elastic search config ('index.mapping.strategy','index.mapping.prefix','includeTransients = true')
+     *  2. A new 'transient' property named exactly 'indexAlias' must be defined into each grails domain class to be indexed
+     *  3. Set 'indexAlias' in 'searchable' section and attribute 'name'
+     *
+     *  Example strategy 'prefixWithAlias' to create in the ES cluster the following index name : "testa.another_index_name"
+     *
+     *  1. Elastic search configs
+     *  index.mapping.strategy = 'prefixWithAlias'
+     *  index.mapping.prefix = 'testa'
+     *  includeTransients = true
+     *
+     *  2. Set transient 'indexAlias' property in grails domain class
+     *
+     *   static transients = ['indexAlias']
+     *
+     *   String indexAlias
+     *   String getIndexAlias() { indexAlias?.toLowerCase() }
+     *
+     *  3. Set 'indexAlias' in searchable section
+     *
+     *  static searchable = {indexAlias name: "another_index_name", index: false ...other properties }
+     *
+     *  ##################################################
+     *
+     *
+     *  If the strategy selected is 'prefixWithAlias', 'prefixWithPackage', 'prefixWithoutPackage'
+     *  the 'prefix' ('index.mapping.prefix') is mandatory and should contain a valid value different than 'none'
+     *
+     *  If the strategy selected it is NOT based on 'aliases' the property 'indexAlias' it is optional and can be omitted
+     *
+     */
+    index.mapping.strategy = 'none'
+    index.mapping.prefix = 'none'
+
+    /**
      * Whether to index and search all non excluded transient properties. All explicitly included transients in @only@ will be indexed regardless.
      */
     includeTransients = false
