@@ -29,8 +29,8 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.common.unit.ByteSizeUnit
 import org.elasticsearch.common.unit.ByteSizeValue
-import org.elasticsearch.common.unit.TimeValue
-import org.elasticsearch.common.xcontent.XContentBuilder
+import org.elasticsearch.core.TimeValue
+import org.elasticsearch.xcontent.XContentBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.util.Assert
@@ -88,7 +88,7 @@ class IndexRequestQueue {
         def unwrappedInstance = domainClassUnWrapperChain.unwrap(instance)
 
         IndexEntityKey key = id == null ? indexEntityKeyFromInstance(unwrappedInstance)
-                                        : new IndexEntityKey(id.toString(), unwrappedInstance.getClass())
+                : new IndexEntityKey(id.toString(), unwrappedInstance.getClass())
 
         synchronized (this) {
             indexRequests.put(key, unwrappedInstance)
@@ -186,7 +186,7 @@ class IndexRequestQueue {
                     .setFlushInterval(TimeValue.timeValueSeconds(5))
                     .setConcurrentRequests(1)
                     .setBackoffPolicy(
-                            BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3))
+                    BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3))
                     .build()
 
             toIndex.each { key, value ->
