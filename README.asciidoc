@@ -159,7 +159,7 @@ This project is a fork based on the great work done by the guys at:
 * https://github.com/mstein/elasticsearch-grails-plugin
 * https://github.com/noamt/elasticsearch-grails-plugin
 
-The first branch of teh "ant400468 EP DAS" is :
+The first branch of thh "ant400468 EP DAS" is :
 https://github.com/ant400468/elasticsearch-grails-plugin/tree/index-mapping-strategy
 
 ==== Why would you want to fork the original Elasticsearch plugin?
