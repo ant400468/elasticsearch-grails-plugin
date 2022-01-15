@@ -24,6 +24,9 @@ In order to simply the versioning, with v3.0.0.M1 the Elasticsearch Grails plugi
 |===
 |Plugin Version | Grails Version | Elasticsearch Version
 
+|EP-DAS 5.0.0
+|5.0.0
+|7.16.2
 
 |3.0.0
 |4.0.x
