@@ -131,7 +131,7 @@ grailsPublish {
     license {
         name = 'Apache-2.0'
     }
-    title = "Elasticsearch Grails Plugin"
+    title = "Elasticsearch Grails Plugin - EP - DAS"
     //rep = "grails-plugins"
     desc = "An Elasticsearch plugin for Grails"
     developers = [
@@ -139,7 +139,8 @@ grailsPublish {
             macrcos: 'Marcos Carceles',
             puneet: 'Puneet Behl',
             james: 'James Kleeh',
-            cgoit: 'Carsten Götzinger'
+            cgoit: 'Carsten Götzinger',
+            ant400468: 'Antonio Latronico'
     ]
 }
 
