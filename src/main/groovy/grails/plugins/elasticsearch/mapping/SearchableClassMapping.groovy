@@ -39,9 +39,6 @@ class SearchableClassMapping implements ElasticSearchConfigAware {
     protected all = false // _all is deprecated in ES 6
     String indexName
 
-    /** Index alias (name) */
-    protected String indexAlias;
-
     SearchableClassMapping(GrailsApplication grailsApplication,
                            DomainEntity domainClass,
                            Collection<SearchableClassPropertyMapping> propertiesMapping) {
@@ -62,19 +59,6 @@ class SearchableClassMapping implements ElasticSearchConfigAware {
     void setRoot(Boolean root) {
         this.root = root != null && root
     }
-
-    Boolean isIndexAlias(){
-        this.indexAlias != null
-    }
-
-    String getIndexAlias() {
-        return this.indexAlias
-    }
-
-    void setIndexAlias(String indexAlias) {
-        this.indexAlias = indexAlias
-    }
-
 
     void setAll(all) {
         //if (all != null)

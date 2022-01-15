@@ -170,12 +170,6 @@ class SearchableDomainClassMapper extends GroovyObjectSupport {
         SearchableClassMapping scm = new SearchableClassMapping(grailsApplication, domainClass, customMappedProperties.values())
         scm.root = root
         scm.all = all
-
-        // set in mapping the index alias (name) to create in the cluster (if any)
-        SearchableClassPropertyMapping indexAliasPropertyMapping = scm.getPropertyMapping('indexAlias')
-        if (indexAliasPropertyMapping){
-            scm.indexAlias = indexAliasPropertyMapping.getAttributes().get('name')
-        }
         return scm
     }
 

@@ -34,22 +34,26 @@ class MappingIndexManager implements ElasticSearchConfigAware {
             switch (strategy.trim()) {
                 case onlyAlias.name():
                     try {
-                        validateAlias(scm.getIndexAlias(), scm, MappingIndexStrategy.valueOf(strategy))
+                        //validateAlias("alias here", scm, MappingIndexStrategy.valueOf(strategy))
+                        LOG.error("Strategy ${strategy} NOT YET IMPLEMENTED . . .")
+                        throw new MappingException("Strategy ${strategy} NOT YET IMPLEMENTED . . .")
                     } catch(IllegalArgumentException e){
                         LOG.warn("Could not install mapping ${scm.indexName}/${scm.elasticTypeName} due to ${e.message}, index alias issue.")
                         throw new MappingException(e?.message)
                     }
-                    return scm.getIndexAlias().toLowerCase()
+                    return "alias_here".toLowerCase()
                     break;
                 case prefixWithAlias.name():
                     try {
-                        validatePrefix(prefix, scm, MappingIndexStrategy.valueOf(strategy))
-                        validateAlias(scm.getIndexAlias(), scm, MappingIndexStrategy.valueOf(strategy))
+                        //validatePrefix(prefix, scm, MappingIndexStrategy.valueOf(strategy))
+                        //validateAlias("alias here", scm, MappingIndexStrategy.valueOf(strategy))
+                        LOG.error("Strategy ${strategy} NOT YET IMPLEMENTED . . .")
+                        throw new MappingException("Strategy ${strategy} NOT YET IMPLEMENTED . . .")
                     } catch(IllegalArgumentException e){
                         LOG.warn("Could not install mapping ${scm.indexName}/${scm.elasticTypeName} due to ${e.message}, prefix or index alias issues.")
                         throw new MappingException(e?.message)
                     }
-                    return prefix.toLowerCase() + DOT + scm.getIndexAlias().toLowerCase()
+                    return prefix.toLowerCase() + DOT + "alias_here".toLowerCase()
                     break;
                 case prefixWithPackage.name():
                     try {
@@ -82,7 +86,7 @@ class MappingIndexManager implements ElasticSearchConfigAware {
     void validateAlias(String alias, SearchableClassMapping scm, MappingIndexStrategy strategy){
         if (!alias){
             throw new IllegalArgumentException("Could not install mapping ${scm.indexName}/${scm.elasticTypeName}, " +
-                    " index alias in domain class and searchable section has not been found 'index.mapping.prefix' is mandatory for the selected strategy ${strategy.name()}.")
+                    " index alias in domain class and searchable section has not been found  for the selected strategy ${strategy.name()}.")
         }
         else if (alias.trim().isEmpty()){
             throw new IllegalArgumentException("Could not install mapping ${scm.indexName}/${scm.elasticTypeName}, " +
