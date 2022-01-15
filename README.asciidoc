@@ -77,6 +77,27 @@ In order to simply the versioning, with v3.0.0.M1 the Elasticsearch Grails plugi
 |1.6.z
 |===
 
+== 5.0.0 (2022-01-13)
+antonio made few changes ...life is beautiful!!!
+
+=== Changed
+* Update elastic search client from v 7.8.0 to v 7.16.2
+
+=== Added
+* New search function in ElasticSearch service which accept 'highlight' settings as param
+
+=== Fixed
+
+* -
+
+=== Deprecated
+
+* -
+
+=== Removed
+
+* -
+
 === Example Configuration for Grails 4
 
 In the following we demonstrate two example configurations using Hibernate or MongoDB as a datastore.
@@ -188,23 +209,3 @@ The original Elasticsearch plugin relies on *Hibernate-specific* GORM components
 ----
 
 
-== 5.0.0 (2022-01-13)
-antonio made few changes ...life is beautiful!!!
-
-=== Changed
-* Update elastic search client from v 7.8.0 to v 7.16.2
-
-=== Added
-* New search function in ElasticSearch service which accept 'highlight' settings as param
-
-=== Fixed
-
-* -
-
-=== Deprecated
-
-* -
-
-=== Removed
-
-* -
