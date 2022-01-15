@@ -180,3 +180,24 @@ The original Elasticsearch plugin relies on *Hibernate-specific* GORM components
    jgs )--\""`             )--\"`
        `""`                `""`
 ----
+
+
+== 5.0.0 (2022-01-13)
+
+=== Changed
+* Update elastic search client from v 7.8.0 to v 7.16.2
+
+=== Added
+* New search function in ElasticSearch service which accept 'highlight' settings as param
+
+=== Fixed
+
+* -
+
+=== Deprecated
+
+* -
+
+=== Removed
+
+* -
