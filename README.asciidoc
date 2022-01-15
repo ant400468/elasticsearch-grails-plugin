@@ -159,6 +159,9 @@ This project is a fork based on the great work done by the guys at:
 * https://github.com/mstein/elasticsearch-grails-plugin
 * https://github.com/noamt/elasticsearch-grails-plugin
 
+The first branch of teh "ant400468 EP DAS" is :
+https://github.com/ant400468/elasticsearch-grails-plugin/tree/index-mapping-strategy
+
 ==== Why would you want to fork the original Elasticsearch plugin?
 
 The original Elasticsearch plugin relies on *Hibernate-specific* GORM components, thus rendering it unusable if you back your Grails application by any other database.
@@ -186,6 +189,7 @@ The original Elasticsearch plugin relies on *Hibernate-specific* GORM components
 
 
 == 5.0.0 (2022-01-13)
+antonio made few changes ...life is beautiful!!!
 
 === Changed
 * Update elastic search client from v 7.8.0 to v 7.16.2
@@ -204,3 +208,25 @@ The original Elasticsearch plugin relies on *Hibernate-specific* GORM components
 === Removed
 
 * -
+
+=== Bad
+* BAD - U2
+
+* If I could, you know I would, if I could, I would
+* Let it go
+* This desperation
+* Dislocation
+* Separation, condemnation
+* Revelation in temptation
+* Isolation, desolation
+* Let it go
+* And so fade away
+* To let it go
+* And so fade away
+* To let it go
+* Oh now, and so to fade away
+* I'm wide awake
+* I'm wide awake
+* Wide awake
+* I'm not sleeping
+* Oh, no, no, no
