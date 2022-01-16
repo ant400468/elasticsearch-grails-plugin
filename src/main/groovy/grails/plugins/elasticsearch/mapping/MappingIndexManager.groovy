@@ -101,7 +101,7 @@ class MappingIndexManager implements ElasticSearchConfigAware {
         }
         else if (prefix.trim().isEmpty()){
             throw new IllegalArgumentException("Could not install mapping ${scm.indexName}/${scm.elasticTypeName}, " +
-                    " index prefix 'index.mapping.prefix' is could not be empty for the selected strategy ${strategy.name()}.")
+                    " index prefix 'index.mapping.prefix' could not be empty for the selected strategy ${strategy.name()}.")
         }
         else if (prefix.toLowerCase().trim() == "none"){
             throw new IllegalArgumentException("Could not install mapping ${scm.indexName}/${scm.elasticTypeName}, " +

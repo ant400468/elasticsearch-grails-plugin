@@ -152,7 +152,22 @@ class ElasticSearchService implements GrailsApplicationAware {
         search(request, params)
     }
 
-
+    /**
+     * Alias for the search(QueryBuilder query, Map params, Closure highlight) signature
+     *
+     *  antonio - 15/01/2022
+     *
+     * @param params Search parameters
+     * @param query QueryBuilder query
+     * @param filter The search filter, whether a Closure or a QueryBuilder
+     * @param aggregation The search results aggregations, whether a Closure, a BaseAggregationBuilder or a Collection<QueryBuilder>
+     * @param highlight the highlight settngs
+     * @return A ElasticSearchResult containing the search results
+     */
+    ElasticSearchResult search(QueryBuilder query, Map params) {
+        SearchRequest request = buildSearchRequest(query, null, null, params)
+        search(request, params)
+    }
 
     /**
      * Global search with a text query.
@@ -502,9 +517,9 @@ class ElasticSearchService implements GrailsApplicationAware {
         SearchSourceBuilder source = new SearchSourceBuilder()
 
         log.debug("Build search request with params: ${params}")
-       /* source.from(params.from ? params.from as int : 0)
-                .size(params.size ? params.size as int : 60)
-                .explain(params.explain ?: true).minScore(params.min_score ?: 0)*/
+        /* source.from(params.from ? params.from as int : 0)
+                 .size(params.size ? params.size as int : 60)
+                 .explain(params.explain ?: true).minScore(params.min_score ?: 0)*/
 
         source.from(params.from ? params?.from.intValue() : 0)
                 .size(params.size ? params?.size.intValue() : 60)
