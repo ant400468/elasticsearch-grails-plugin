@@ -76,6 +76,25 @@ elasticSearch {
     includeTransients = false
 
     /**
+     * Custom Index mapping 'strategy' based on prefix and alias (to create custom index name for each domain class to be indexed into the cluster)
+     *
+     * Allowed strategy values are ['none', 'onlyAlias', 'prefixWithAlias', 'prefixWithPackage', 'prefixWithoutPackage']
+     *
+     * 1. 'none' set the index name of each root grails domain class to the full name (include package)
+     * 2. 'onlyAlias' @TODO NOT YET IMPLEMENTED
+     * 3. 'prefixWithAlias' @TODO NOT YET IMPLEMENTED
+     * 4. 'prefixWithPackage' set the index name of each root domain class adding a prefix  ahead the domain class full name (include package)
+     * 5. 'prefixWithoutPackage' set the index name of each root domain class with the prefix ahead the only domain class name (exclude package)
+     *
+     *
+     *  If the strategy selected is 'prefixWithPackage', 'prefixWithoutPackage'
+     *  the 'prefix' ('index.mapping.prefix') is mandatory and should contain a valid value different than 'none'
+     *
+     */
+    index.mapping.strategy = 'none'
+    index.mapping.prefix = 'none'
+
+    /**
      * Disable dynamic method injection in domain class
      */
     disableDynamicMethodsInjection = false

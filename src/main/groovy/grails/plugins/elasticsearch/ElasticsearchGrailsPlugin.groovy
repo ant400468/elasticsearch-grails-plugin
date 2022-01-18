@@ -23,6 +23,7 @@ import grails.plugins.elasticsearch.conversion.unmarshall.DomainClassUnmarshalle
 import grails.plugins.elasticsearch.index.IndexRequestQueue
 import grails.plugins.elasticsearch.mapping.DomainReflectionService
 import grails.plugins.elasticsearch.mapping.MappingMigrationManager
+import grails.plugins.elasticsearch.mapping.MappingIndexManager
 import grails.plugins.elasticsearch.mapping.SearchableClassMappingConfigurator
 import grails.plugins.elasticsearch.unwrap.DomainClassUnWrapperChain
 import grails.plugins.elasticsearch.unwrap.HibernateProxyUnWrapper
@@ -99,6 +100,11 @@ class ElasticsearchGrailsPlugin extends Plugin {
                 grailsApplication = grailsApplication
                 es = ref('elasticSearchAdminService')
             }
+
+            mappingIndexManager(MappingIndexManager) {
+                grailsApplication = grailsApplication
+            }
+
             searchableClassMappingConfigurator(SearchableClassMappingConfigurator) { bean ->
                 elasticSearchContext = ref('elasticSearchContextHolder')
                 grailsApplication = grailsApplication

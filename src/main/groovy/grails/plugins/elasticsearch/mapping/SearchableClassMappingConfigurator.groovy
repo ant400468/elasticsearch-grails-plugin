@@ -44,6 +44,7 @@ class SearchableClassMappingConfigurator implements ElasticSearchConfigAware {
     GrailsApplication grailsApplication
     ElasticSearchAdminService es
     MappingMigrationManager mmm
+    MappingIndexManager mim
 
     DomainReflectionService domainReflectionService
 
@@ -101,7 +102,7 @@ class SearchableClassMappingConfigurator implements ElasticSearchConfigAware {
         Map<String, Object> indexSettings = buildIndexSettings()
 
         LOG.debug("Index settings are " + indexSettings)
-        
+
         LOG.debug("Installing mappings...")
         Map<SearchableClassMapping, Map<String, Object>> elasticMappings = buildElasticMappings(mappings)
         LOG.debug "elasticMappings are ${elasticMappings.keySet()}"
@@ -110,9 +111,15 @@ class SearchableClassMappingConfigurator implements ElasticSearchConfigAware {
         MappingMigrationStrategy migrationStrategy = MappingMigrationStrategy.valueOf(strategyName)
         def mappingConflicts = []
 
+        //Get the index mapping configs
+        ConfigObject indexMapping = (esConfig?.index as ConfigObject)?.mapping as ConfigObject
+
+        //Build the indices name to be indexed based on each root domain class and the custom selected index strategy (elastic config)
         Set<String> indices = mappings
                 .findAll { it.isRoot() }
-                .collect { it.domainClass.fullName.toLowerCase() } as Set<String>
+                .collect {
+                    mim.buildIndexName(indexMapping, it)
+                } as Set<String>
 
         //Install the mappings for each index all together
         indices.each { String indexName ->
