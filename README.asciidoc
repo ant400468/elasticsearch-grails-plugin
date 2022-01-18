@@ -24,6 +24,9 @@ In order to simply the versioning, with v3.0.0.M1 the Elasticsearch Grails plugi
 |===
 |Plugin Version | Grails Version | Elasticsearch Version
 
+|EP-DAS 5.0.0
+|5.0.0
+|7.16.2
 
 |3.0.0
 |4.0.x
@@ -73,6 +76,27 @@ In order to simply the versioning, with v3.0.0.M1 the Elasticsearch Grails plugi
 |2.y
 |1.6.z
 |===
+
+== 5.0.0 (2022-01-13)
+antonio made few changes ..!!!
+
+=== Changed
+* Update elastic search client from v 7.8.0 to v 7.16.2
+
+=== Added
+* New search function in ElasticSearch service which accept 'highlight' settings as param
+
+=== Fixed
+
+* -
+
+=== Deprecated
+
+* -
+
+=== Removed
+
+* -
 
 === Example Configuration for Grails 4
 
@@ -156,6 +180,12 @@ This project is a fork based on the great work done by the guys at:
 * https://github.com/mstein/elasticsearch-grails-plugin
 * https://github.com/noamt/elasticsearch-grails-plugin
 
+The first branch of the "ant400468 EP DAS" version is :
+https://github.com/ant400468/elasticsearch-grails-plugin/tree/index-mapping-strategy
+
+Branch ant400468 to update elastic search from 7.8.0 to 7.16.2
+https://github.com/ant400468/elasticsearch-grails-plugin/tree/update-elastic-search-client-to-7.16.2
+
 ==== Why would you want to fork the original Elasticsearch plugin?
 
 The original Elasticsearch plugin relies on *Hibernate-specific* GORM components, thus rendering it unusable if you back your Grails application by any other database.
@@ -180,3 +210,5 @@ The original Elasticsearch plugin relies on *Hibernate-specific* GORM components
    jgs )--\""`             )--\"`
        `""`                `""`
 ----
+
+
