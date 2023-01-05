@@ -95,6 +95,11 @@ elasticSearch {
     index.mapping.prefix = 'none'
 
     /**
+     * Custom  wait Cluster Health Check
+     */
+    waitClusterHealthCheck = false
+
+    /**
      * Disable dynamic method injection in domain class
      */
     disableDynamicMethodsInjection = false

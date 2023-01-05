@@ -185,7 +185,12 @@ class SearchableClassMappingConfigurator implements ElasticSearchConfigAware {
             mmm.applyMigrations(migrationStrategy, elasticMappings, mappingConflicts, indexSettings)
         }
 
-        es.waitForClusterStatus(ClusterHealthStatus.YELLOW)
+        // TODO antonio 05/01/2023 - we enable / disable to wait the cluster health check
+        boolean waitClusterHealthCheck = grailsApplication.config.getProperty("elasticSearch.waitClusterHealthCheck", Boolean, false)
+        LOG.info("Wait Cluster health check? [${waitClusterHealthCheck}]")
+        if (waitClusterHealthCheck) {
+            es.waitForClusterStatus(ClusterHealthStatus.YELLOW)
+        }
     }
 
     /**
@@ -195,7 +200,13 @@ class SearchableClassMappingConfigurator implements ElasticSearchConfigAware {
      */
     private void createIndexWithMappings(String indexName, MappingMigrationStrategy strategy, Map<String, Map> esMappings, Map indexSettings) throws RemoteTransportException {
         // Could be blocked on cluster level, thus wait.
-        es.waitForClusterStatus(ClusterHealthStatus.YELLOW)
+        // TODO antonio 05/01/2023 - we enable / disable to wait the cluster health check
+        boolean waitClusterHealthCheck = grailsApplication.config.getProperty("elasticSearch.waitClusterHealthCheck", Boolean, false)
+        LOG.info("Wait Cluster health check? [${waitClusterHealthCheck}]")
+
+        if (waitClusterHealthCheck) {
+            es.waitForClusterStatus(ClusterHealthStatus.YELLOW)
+        }
         if(!es.indexExists(indexName)) {
             LOG.debug("Index ${indexName} does not exists, initiating creation...")
             if (strategy == MappingMigrationStrategy.alias) {
